@@ -46,6 +46,8 @@ int main(int argc, char const *argv[])
   int tiempo2 = atoi(data_in->lines[1][3]);
   int tiempo3 = atoi(data_in->lines[1][4]);
 
+
+
   printf("%d \n", tiempo_de_creacion);
   printf("%d \n", envios_necesarios);
   printf("%d \n", tiempo1);
@@ -58,24 +60,27 @@ int main(int argc, char const *argv[])
 
   int id_parent = getpid();
   printf("id parent: %d \n", id_parent);
-  pid_t pid;
+  pid_t pid_fabrica;
 
   /* fork a child process */
-  pid = fork();
+  pid_fabrica = fork();
 
-  if (pid < 0) { 
+  if (pid_fabrica < 0) { 
     /* error occurred */
     fprintf(stderr, "Fork Failed"); 
     return 1;
   }
-  else if (pid == 0) { 
+  else if (pid_fabrica == 0) { 
     /* child process FABRICA */
+    int pid_fabrica = getpid();
+    //pid_fabrica = getpid();
     // crear los repartidores aqui
     printf("Child about to do exec REPARTIDORES\n"); 
     printf("id child: %d \n", getpid());
 
     for (int i = 0; i < envios_necesarios; i++){
 
+    int pid;
     pid = fork();
     if (pid < 0) {
     /* error occurred */
@@ -109,8 +114,8 @@ int main(int argc, char const *argv[])
     wait(NULL);
 
     for (int i = 0; i < 3; i++){
-
-          pid = fork();
+    int pid;
+    pid = fork();
     if (pid < 0) {
     /* error occurred */
     fprintf(stderr, "Fork Failed"); 
@@ -119,7 +124,26 @@ int main(int argc, char const *argv[])
 
     else if (pid == 0) { 
       /* child process SEMAFORO */
-      char *args[] = {"Iniciando", "semaforo", "i", NULL};
+      /* 
+      Semaforo recibe: 
+      (1) id de libre eleccion
+      (2) delay = tiempo_i: 3 ultimos numeros de la 2da linea del input.txt
+      (3) parent = PID fabrica
+      */
+	    char id[20];
+      sprintf(id, "%d", i); 
+
+      char str_tiempo[20];
+      if(i==0){
+        sprintf(str_tiempo, "%d", tiempo1); 
+      }else if(i==1){
+        sprintf(str_tiempo, "%d", tiempo2); 
+      }else if(i==2){
+        sprintf(str_tiempo, "%d", tiempo3);
+      }
+      char char_pid_fabrica[20];
+      sprintf(char_pid_fabrica, "%d", pid_fabrica);
+      char *args[] = {id, str_tiempo, char_pid_fabrica, NULL};
       execv("./semaforo", args);
       printf("Child Complete\n");
     }
@@ -127,14 +151,8 @@ int main(int argc, char const *argv[])
     else {
       /* parent  process PRINCIPAL */
       wait(NULL);
-
-
     }
-
-
     }
-
-
   }
 }
 
