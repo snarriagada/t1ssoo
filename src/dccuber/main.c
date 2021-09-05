@@ -69,18 +69,72 @@ int main(int argc, char const *argv[])
     return 1;
   }
   else if (pid == 0) { 
-    /* child process */
-    printf("Child about to do exec\n"); 
+    /* child process FABRICA */
+    // crear los repartidores aqui
+    printf("Child about to do exec REPARTIDORES\n"); 
     printf("id child: %d \n", getpid());
-    char *args[] = {"Iniciando", "el", "semaforo", NULL};
-    execv("./semaforo", args);
+
+    for (int i = 0; i < envios_necesarios; i++){
+
+    pid = fork();
+    if (pid < 0) {
+    /* error occurred */
+    fprintf(stderr, "Fork Failed"); 
+    return 1;
+    }
+
+    else if (pid == 0) { 
+      /* child process SEMAFORO */
+      char *args[] = {"Iniciando", "repartidor", "i", NULL};
+      execv("./repartidor", args);
+      printf("Child Complete\n");
+    }
+  
+    else {
+      /* parent  process PRINCIPAL */
+      wait(NULL);
+    }
+    }
+    // fin for repartidores
+
+
     printf("Child done with exec\n");
+
+
   }
   else {
-    /* parent process */
+    /* parent process PRINCIPAL */
     /* parent will wait for the child to complete */
+    // CREAR SEMAFOROS
     wait(NULL);
-    printf("Child Complete\n");
+
+    for (int i = 0; i < 3; i++){
+
+          pid = fork();
+    if (pid < 0) {
+    /* error occurred */
+    fprintf(stderr, "Fork Failed"); 
+    return 1;
+    }
+
+    else if (pid == 0) { 
+      /* child process SEMAFORO */
+      char *args[] = {"Iniciando", "semaforo", "i", NULL};
+      execv("./semaforo", args);
+      printf("Child Complete\n");
+    }
+  
+    else {
+      /* parent  process PRINCIPAL */
+      wait(NULL);
+
+
+    }
+
+
+    }
+
+
   }
 }
 
