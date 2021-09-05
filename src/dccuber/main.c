@@ -72,7 +72,8 @@ int main(int argc, char const *argv[])
     /* child process */
     printf("Child about to do exec\n"); 
     printf("id child: %d \n", getpid());
-    execlp("/bin/ls","ls",NULL);
+    char *args[] = {"Iniciando", "el", "semaforo", NULL};
+    execv("./semaforo", args);
     printf("Child done with exec\n");
   }
   else {
