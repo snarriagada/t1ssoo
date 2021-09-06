@@ -149,7 +149,7 @@ int main(int argc, char const *argv[])
         (2) delay = tiempo_i: 3 ultimos numeros de la 2da linea del input.txt
         (3) parent = PID fabrica
         */
-        printf("***EN ITERACION %i DEL FORK SEMAFOROS****", i);
+        printf("***EN ITERACION %d DEL FORK SEMAFOROS****\n", i);
         char id[20];
         sprintf(id, "%d", i); 
 
@@ -170,7 +170,8 @@ int main(int argc, char const *argv[])
     
       else {
         /* parent  process PRINCIPAL */
-        wait(NULL);
+        // wait(NULL);
+        printf("principal no espera a semaforo");
       }
     }
   }
