@@ -67,7 +67,7 @@ int main(int argc, char const *argv[])
   // ----- FORK
 
   int id_parent = getpid();
-  printf("id parent: %d \n", id_parent);
+  printf("id parent PRINCIPAL: %d \n", id_parent);
   pid_t pid_fabrica;
 
   /* fork a child process */
@@ -80,12 +80,13 @@ int main(int argc, char const *argv[])
   }
   else if (pid_fabrica == 0) { 
     /* child process FABRICA */
+    
     connect_sigaction(SIGUSR1, handle_sigusr1);
     int pid_fabrica = getpid();
     //pid_fabrica = getpid();
     // crear los repartidores aqui
     printf("Child about to do exec REPARTIDORES\n"); 
-    printf("id child: %d \n", getpid());
+    printf("id child FABRICA: %d \n", getpid());
 
     for (int i = 0; i < envios_necesarios; i++){
 
