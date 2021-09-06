@@ -80,7 +80,7 @@ int main(int argc, char const *argv[])
   }
   else if (pid_fabrica == 0) { 
     /* child process FABRICA */
-    //connect_sigaction(SIGUSR1, handle_sigusr1);
+    connect_sigaction(SIGUSR1, handle_sigusr1);
     int pid_fabrica = getpid();
     //pid_fabrica = getpid();
     // crear los repartidores aqui
@@ -112,8 +112,7 @@ int main(int argc, char const *argv[])
     }
     // fin for repartidores
 
-    while(true){
-      connect_sigaction(SIGUSR1, handle_sigusr1);
+    while(1){
       pause();
     }
 
