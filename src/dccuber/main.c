@@ -6,6 +6,9 @@
 void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr) 
 {
   printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
+  int number_received = siginfo->si_value.sival_int;
+  printf ("info RECIBIDA EN FABRICA pid: %d: %d\n",getpid(), number_received);
+
 }
 
 int main(int argc, char const *argv[])
