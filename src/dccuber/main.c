@@ -99,8 +99,8 @@ int main(int argc, char const *argv[])
     }
 
     else if (pid == 0) { 
-      /* child process SEMAFORO */
-      char *args[] = {"Iniciando", "semaforo", "i", NULL};
+      /* child process Repartidor */
+      char *args[] = {"Iniciando", "repartidor", "i", NULL};
       execv("./repartidor", args);
       printf("Child Complete\n");
     }
