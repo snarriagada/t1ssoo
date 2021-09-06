@@ -80,7 +80,7 @@ int main(int argc, char const *argv[])
   }
   else if (pid_fabrica == 0) { 
     /* child process FABRICA */
-    connect_sigaction(SIGUSR1, handle_sigusr1);
+    //connect_sigaction(SIGUSR1, handle_sigusr1);
     int pid_fabrica = getpid();
     //pid_fabrica = getpid();
     // crear los repartidores aqui
@@ -106,11 +106,16 @@ int main(int argc, char const *argv[])
     }
   
     else {
-      /* parent  process PRINCIPAL */
+      /* parent  process FABRICA */
       wait(NULL);
     }
     }
     // fin for repartidores
+
+    while(true){
+      connect_sigaction(SIGUSR1, handle_sigusr1);
+      pause();
+    }
 
 
     printf("Child done with exec\n");
@@ -121,7 +126,7 @@ int main(int argc, char const *argv[])
     /* parent process PRINCIPAL */
     /* parent will wait for the child to complete */
     // CREAR SEMAFOROS
-    wait(NULL);
+    //wait(NULL);
 
     for (int i = 0; i < 3; i++){
     int pid;
