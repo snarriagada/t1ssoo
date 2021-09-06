@@ -3,6 +3,11 @@
 
 #include "../file_manager/manager.h"
 
+void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr) 
+{
+  printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
+}
+
 int main(int argc, char const *argv[])
 {
   printf("I'm the DCCUBER process and my PID is: %i\n", getpid());
@@ -56,6 +61,9 @@ int main(int argc, char const *argv[])
 
   input_file_destroy(data_in);
 
+
+  //connect_sigaction(SIGUSR1, handle_sigusr1);
+
   // ----- FORK
 
   int id_parent = getpid();
@@ -72,6 +80,7 @@ int main(int argc, char const *argv[])
   }
   else if (pid_fabrica == 0) { 
     /* child process FABRICA */
+    connect_sigaction(SIGUSR1, handle_sigusr1);
     int pid_fabrica = getpid();
     //pid_fabrica = getpid();
     // crear los repartidores aqui
@@ -80,6 +89,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < envios_necesarios; i++){
 
+    //sleep(tiempo_de_creacion);
     int pid;
     pid = fork();
     if (pid < 0) {
@@ -90,7 +100,7 @@ int main(int argc, char const *argv[])
 
     else if (pid == 0) { 
       /* child process SEMAFORO */
-      char *args[] = {"Iniciando", "repartidor", "i", NULL};
+      char *args[] = {"Iniciando", "semaforo", "i", NULL};
       execv("./repartidor", args);
       printf("Child Complete\n");
     }
