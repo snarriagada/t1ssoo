@@ -9,6 +9,7 @@ void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr)
   int number_received = siginf->si_value.sival_int;
   printf ("info RECIBIDA EN FABRICA pid %d: semaforo_id %d\n",getpid(), number_received);
 
+
 }
 
 int main(int argc, char const *argv[])
@@ -132,44 +133,45 @@ int main(int argc, char const *argv[])
     //wait(NULL);
 
     for (int i = 0; i < 3; i++){
-    int pid;
-    pid = fork();
-    if (pid < 0) {
-    /* error occurred */
-    fprintf(stderr, "Fork Failed"); 
-    return 1;
-    }
-
-    else if (pid == 0) { 
-      /* child process SEMAFORO */
-      /* 
-      Semaforo recibe: 
-      (1) id de libre eleccion
-      (2) delay = tiempo_i: 3 ultimos numeros de la 2da linea del input.txt
-      (3) parent = PID fabrica
-      */
-	    char id[20];
-      sprintf(id, "%d", i); 
-
-      char str_tiempo[20];
-      if(i==0){
-        sprintf(str_tiempo, "%d", tiempo1); 
-      }else if(i==1){
-        sprintf(str_tiempo, "%d", tiempo2); 
-      }else if(i==2){
-        sprintf(str_tiempo, "%d", tiempo3);
+      int pid;
+      pid = fork();
+      if (pid < 0) {
+      /* error occurred */
+      fprintf(stderr, "Fork Failed"); 
+      return 1;
       }
-      char char_pid_fabrica[20];
-      sprintf(char_pid_fabrica, "%d", pid_fabrica);
-      char *args[] = {id, str_tiempo, char_pid_fabrica, NULL};
-      execv("./semaforo", args);
-      printf("Child Complete\n");
-    }
-  
-    else {
-      /* parent  process PRINCIPAL */
-      wait(NULL);
-    }
+
+      else if (pid == 0) { 
+        /* child process SEMAFORO */
+        /* 
+        Semaforo recibe: 
+        (1) id de libre eleccion
+        (2) delay = tiempo_i: 3 ultimos numeros de la 2da linea del input.txt
+        (3) parent = PID fabrica
+        */
+        printf("***EN ITERACION %i DEL FORK SEMAFOROS****", i);
+        char id[20];
+        sprintf(id, "%d", i); 
+
+        char str_tiempo[20];
+        if(i==0){
+          sprintf(str_tiempo, "%d", tiempo1); 
+        }else if(i==1){
+          sprintf(str_tiempo, "%d", tiempo2); 
+        }else if(i==2){
+          sprintf(str_tiempo, "%d", tiempo3);
+        }
+        char char_pid_fabrica[20];
+        sprintf(char_pid_fabrica, "%d", pid_fabrica);
+        char *args[] = {id, str_tiempo, char_pid_fabrica, NULL};
+        execv("./semaforo", args);
+        printf("Child Complete\n");
+      }
+    
+      else {
+        /* parent  process PRINCIPAL */
+        wait(NULL);
+      }
     }
   }
 }
