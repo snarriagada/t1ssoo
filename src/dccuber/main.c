@@ -256,7 +256,8 @@ void handle_sigint(int sig)
           printf("!! CICLO3 IF en pid: %d\n", getpid());
           pid_semaforo3 = pid;
         }
-        wait(NULL);
+        //wait(NULL);
+        pause();
         printf("principal no espera a semaforo");
       }
     }
