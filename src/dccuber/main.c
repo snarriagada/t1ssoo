@@ -56,7 +56,7 @@ int main(int argc, char const *argv[])
     {
     array_repartidores[i] = 0;
     }  
-  }
+  
 
   printf("%d \n", tiempo_de_creacion);
   printf("%d \n", envios_necesarios);
