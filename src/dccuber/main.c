@@ -247,7 +247,7 @@ void handle_sigint(int sig)
     
       else {
         /* parent  process PRINCIPAL */
-        // wait(NULL);
+        wait(NULL);
         printf("principal no espera a semaforo");
       }
     }
