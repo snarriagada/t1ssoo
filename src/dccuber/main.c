@@ -110,7 +110,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < envios_necesarios; i++){
 
-    //sleep(tiempo_de_creacion);
+    sleep(tiempo_de_creacion);
     int pid;
     pid = fork();
     // array_repartidores[i] = pid;
