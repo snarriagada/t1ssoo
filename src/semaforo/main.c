@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
   {
     printf("Gracefully finishing\n");
 
-    printf("EL INDICE DEL SEMAFORO ES: %d\n", indice);
+    printf("EL INDICE DEL SEMAFORO ES: %d\n", argv[0]);
     char* fileName = "semaforo_";
     char* fileType = ".txt";
     //int count = 5;
