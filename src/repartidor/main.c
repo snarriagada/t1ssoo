@@ -97,7 +97,7 @@ int main(int argc, char const *argv[])
   void handle_sigabrt(int sig)
   {
     printf("Gracefully finishing repartidor\n");
-    send_signal_with_int(atoi(getppid()), atoi(argv[0]));
+    send_signal_with_int(getppid(), atoi(argv[0]));
 
 
     //printf("EL INDICE DEL REPARTIDOR ES: %d\n", indice);
