@@ -33,9 +33,24 @@ void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr)
   }
 }
 
+void handle_sigint(int sig)
+{
+  printf("Gracefully finishing\n");
+
+  // Abrimos un archivo en modo de lectura
+  FILE *output = fopen("output_repartidor.txt", "w");
+  fprintf(output, "soy el output");
+  // Se cierra el archivo (si no hay leak)
+  fclose(output);
+
+  // Terminamos el programa con exit code 0
+  exit(0);
+}
+
 int main(int argc, char const *argv[])
 {
   connect_sigaction(SIGUSR1, handle_sigusr1);
+  signal(SIGINT, handle_sigint);
 
   //printf("dist1: %s dist2: %s dist3: %s distBodega:%s\n", argv[0], argv[1], argv[2], argv[3]);
   //printf("I'm the REPARTIDOR process and my PID is: %i\n", getpid());
@@ -102,6 +117,7 @@ int main(int argc, char const *argv[])
       tiempo_bodega = turnos;
       printf("%i llego a bodega \n", getpid());
       // terminar ejecucion aqui !! y generar output
+      kill(getpid(), SIGINT);
     }
   }
 }
