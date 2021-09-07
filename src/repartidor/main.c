@@ -37,6 +37,7 @@ void handle_sigabrt(int sig)
 {
   printf("Gracefully finishing\n");
 
+  /*
   // Abrimos un archivo en modo de lectura
   FILE *output = fopen("output_repartidor.txt", "w");
   fprintf(output, "soy el output");
@@ -45,6 +46,22 @@ void handle_sigabrt(int sig)
 
   // Terminamos el programa con exit code 0
   exit(0);
+  */
+
+  char* fileName = "repartidor_";
+  char* fileType = ".txt";
+  int count = 5;
+
+  for (int i=0; i<count; i++)
+  {
+    sprintf (nombre_output, "%s%i%s", fileName, i, fileType);
+    //f = fopen(nombre_output, "w");
+    FILE *output = fopen(nombre_output, "w");
+    fprintf(output, "soy el output");
+    fclose(output);
+
+    exit(0);
+  }
 }
 
 int main(int argc, char const *argv[])
