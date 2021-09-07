@@ -51,14 +51,16 @@ void handle_sigabrt(int sig)
   char* fileName = "repartidor_";
   char* fileType = ".txt";
   int count = 5;
+  char nombre_output[512];
+  FILE* f = NULL; 
 
   for (int i=0; i<count; i++)
   {
     sprintf (nombre_output, "%s%i%s", fileName, i, fileType);
     f = fopen(nombre_output, "w");
     //FILE *output = fopen(nombre_output, "w");
-    fprintf(output, "soy el output");
-    fclose(output);
+    fprintf(nombre_output, "soy el output");
+    fclose(nombre_output);
 
     exit(0);
   }
