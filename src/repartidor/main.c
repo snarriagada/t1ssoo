@@ -64,7 +64,7 @@ int main(int argc, char const *argv[])
     sleep(1);
     turnos++;
     //cantidad_cambios++;
-    //printf("cantidad  de cambios = %i\n", cantidad_cambios);
+    printf("dist_s1 %i dist_s2 %i dist_s3 %i dist_rep %i\n", dist_semaforo1,dist_semaforo2,dist_semaforo3,dist_repartidor);
 
     if(dist_repartidor == (dist_semaforo1 - 1)){
       printf("if1\n");
