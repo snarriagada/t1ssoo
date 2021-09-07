@@ -106,7 +106,7 @@ int main(int argc, char const *argv[])
     FILE* f = NULL; 
 
     sprintf(nombre_output, "%s%i%s", fileName, indice, fileType);
-    printf("generando output: %s\n", indice);
+    printf("generando output: %i\n", indice);
     f = fopen(nombre_output, "w");
     //FILE *output = fopen(nombre_output, "w");
     fprintf(f, "soy el output");
