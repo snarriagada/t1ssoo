@@ -79,6 +79,7 @@ int main(int argc, char const *argv[])
   int dist_semaforo3 = atoi(argv[2]);
   int dist_bodega = atoi(argv[3]);
   int indice = atoi(argv[4]);
+  printf("EL INDICE DEL REPARTIDOR ES: %d\n", indice);
 
   int tiempo_semaforo1 = 0;
   int tiempo_semaforo2 = 0;  
