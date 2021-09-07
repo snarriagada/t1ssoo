@@ -68,7 +68,7 @@ int main(int argc, char const *argv[])
 
   void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr) 
   {
-  printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
+  //printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
   int number_received = siginf->si_value.sival_int;
   printf ("info RECIBIDA EN FABRICA pid %d: semaforo_id %d\n",getpid(), number_received);
 
@@ -177,7 +177,7 @@ int main(int argc, char const *argv[])
         (2) delay = tiempo_i: 3 ultimos numeros de la 2da linea del input.txt
         (3) parent = PID fabrica
         */
-        printf("***EN ITERACION %d DEL FORK SEMAFOROS****\n", i);
+        //printf("***EN ITERACION %d DEL FORK SEMAFOROS****\n", i);
         char id[20];
         sprintf(id, "%d", i); 
 
