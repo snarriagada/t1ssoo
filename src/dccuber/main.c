@@ -94,7 +94,8 @@ int main(int argc, char const *argv[])
   repartidores_finalizados++;
   if(repartidores_finalizados==envios_necesarios){
     //enviar señal main para terminar todo
-    kill(getppid(), SIGINT);
+    printf("******TERMINO TODO, MATARE A: %i ****\n", getppid());
+    //kill(getppid(), SIGINT);
   }
   /*
   for (int i = 0; i < envios_necesarios; i++)
@@ -111,9 +112,9 @@ int main(int argc, char const *argv[])
 void handle_sigint(int sig)
 {
   printf("Gracefully finishing\n");
-  kill(pid_semaforo1, SIGABRT);
-  kill(pid_semaforo2, SIGABRT);
-  kill(pid_semaforo3, SIGABRT);
+  //kill(pid_semaforo1, SIGABRT);
+  //kill(pid_semaforo2, SIGABRT);
+  //kill(pid_semaforo3, SIGABRT);
 
 }
 
