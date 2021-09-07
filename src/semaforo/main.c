@@ -12,9 +12,9 @@ int main(int argc, char const *argv[])
 
   void handle_sigabrt(int sig)
   {
-    printf("Gracefully finishing\n");
+    printf("Gracefully finishing semaforo\n");
 
-    printf("EL INDICE DEL SEMAFORO ES: %d\n", argv[0]);
+    //printf("EL INDICE DEL SEMAFORO ES: %s\n", argv[0]);
     char* fileName = "semaforo_";
     char* fileType = ".txt";
     //int count = 5;
@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     FILE* f = NULL; 
 
     sprintf(nombre_output, "%s%s%s", fileName, argv[0], fileType);
-    printf("generando output semaforo: %i\n", argv[0]);
+    //printf("generando output semaforo: %i\n", argv[0]);
     f = fopen(nombre_output, "w");
     //FILE *output = fopen(nombre_output, "w");
     fprintf(f, "%i", cantidad_cambios);
@@ -41,8 +41,5 @@ int main(int argc, char const *argv[])
     sleep(atoi(argv[1]));
     cantidad_cambios++;
     printf("cantidad  de cambios = %i\n", cantidad_cambios);
-    if(cantidad_cambios==10){
-      kill(getpid(), SIGABRT);
-    }
   }
 }

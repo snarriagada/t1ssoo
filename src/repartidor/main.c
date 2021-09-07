@@ -96,9 +96,11 @@ int main(int argc, char const *argv[])
 
   void handle_sigabrt(int sig)
   {
-    printf("Gracefully finishing\n");
+    printf("Gracefully finishing repartidor\n");
+    send_signal_with_int(atoi(getppid()), atoi(argv[0]));
 
-    printf("EL INDICE DEL REPARTIDOR ES: %d\n", indice);
+
+    //printf("EL INDICE DEL REPARTIDOR ES: %d\n", indice);
     char* fileName = "repartidor_";
     char* fileType = ".txt";
     //int count = 5;
@@ -106,7 +108,7 @@ int main(int argc, char const *argv[])
     FILE* f = NULL; 
 
     sprintf(nombre_output, "%s%i%s", fileName, indice, fileType);
-    printf("generando output: %i\n", indice);
+    //printf("generando output: %i\n", indice);
     f = fopen(nombre_output, "w");
     //FILE *output = fopen(nombre_output, "w");
     fprintf(f, "%i,%i,%i,%i", tiempo_semaforo1, tiempo_semaforo2, tiempo_semaforo3, tiempo_bodega);

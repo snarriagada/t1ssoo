@@ -82,6 +82,23 @@ int main(int argc, char const *argv[])
     }  
   }
 
+  void handle_sigusr2(int sig, siginfo_t *siginf, void *ptr) 
+  {
+  printf ("Signal RECIBIDA EN FABRICA desde REPARTIDOR: %d\n", sig);
+  int number_received = siginf->si_value.sival_int;
+  printf ("info RECIBIDA EN FABRICA pid %d: repartidor_id %d\n",getpid(), number_received);
+  /*
+  for (int i = 0; i < envios_necesarios; i++)
+    {
+      if(array_repartidores[i] == 0){
+        break;
+      }
+      send_signal_with_int(array_repartidores[i], number_received);
+      printf("**** Enviando señal a %d \n", array_repartidores[i]);
+    }  
+  */
+  }
+
   //connect_sigaction(SIGUSR1, handle_sigusr1);
 
   // ----- FORK
@@ -102,6 +119,8 @@ int main(int argc, char const *argv[])
     /* child process FABRICA */
     
     connect_sigaction(SIGUSR1, handle_sigusr1);
+    connect_sigaction(SIGUSR2, handle_sigusr2);
+
     int pid_fabrica = getpid();
     //pid_fabrica = getpid();
     // crear los repartidores aqui
