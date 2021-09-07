@@ -112,13 +112,14 @@ int main(int argc, char const *argv[])
     char* fileType = ".txt";
     //int count = 5;
     char nombre_output[512];
-    //FILE* f = NULL; 
+    FILE* f = NULL; 
 
     sprintf(nombre_output, "%s%i%s", fileName, indice, fileType);
-    //f = fopen(nombre_output, "w");
-    FILE *output = fopen(nombre_output, "w");
-    fprintf(output, "soy el output");
-    fclose(output);
+    printf("generando output: %s\n", nombre_output);
+    f = fopen(nombre_output, "w");
+    //FILE *output = fopen(nombre_output, "w");
+    fprintf(f, "soy el output");
+    fclose(f);
 
     exit(0);
   }
