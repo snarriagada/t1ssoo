@@ -40,10 +40,10 @@ int main(int argc, char const *argv[])
   //printf("dist1: %s dist2: %s dist3: %s distBodega:%s\n", argv[0], argv[1], argv[2], argv[3]);
   //printf("I'm the REPARTIDOR process and my PID is: %i\n", getpid());
 
-  int dist_semaforo1 = argv[0];
-  int dist_semaforo2 = argv[1];  
-  int dist_semaforo3 = argv[2];
-  int dist_bodega = argv[3];
+  int dist_semaforo1 = atoi(argv[0]);
+  int dist_semaforo2 = atoi(argv[1]);  
+  int dist_semaforo3 = atoi(argv[2]);
+  int dist_bodega = atoi(argv[3]);
 
   int tiempo_semaforo1 = 0;
   int tiempo_semaforo2 = 0;  
