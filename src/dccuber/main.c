@@ -8,9 +8,9 @@
 int main(int argc, char const *argv[])
 {
   //int envios_necesarios;
-  int pid_semaforo1;
-  int pid_semaforo2;
-  int pid_semaforo3;
+  int pid_semaforo1 = 0;
+  int pid_semaforo2 = 0;
+  int pid_semaforo3 = 0;
 
   printf("I'm the DCCUBER process and my PID is: %i\n", getpid());
 
@@ -217,13 +217,6 @@ void handle_sigint(int sig)
 
       else if (pid == 0) { 
         /* child process SEMAFORO */
-        if(i==0){
-          pid_semaforo1 = pid;
-        }else if(i==1){
-          pid_semaforo2 = pid;
-        }else if(i==2){
-          pid_semaforo3 = pid;
-        }
         /* 
         Semaforo recibe: 
         (1) id de libre eleccion
@@ -251,6 +244,13 @@ void handle_sigint(int sig)
     
       else {
         /* parent  process PRINCIPAL */
+        if(i==0){
+          pid_semaforo1 = pid;
+        }else if(i==1){
+          pid_semaforo2 = pid;
+        }else if(i==2){
+          pid_semaforo3 = pid;
+        }
         wait(NULL);
         printf("principal no espera a semaforo");
       }
