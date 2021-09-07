@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
   int tiempo2 = atoi(data_in->lines[1][3]);
   int tiempo3 = atoi(data_in->lines[1][4]);
 
-  int array_repartidores[envios_necesarios;]
+  int array_repartidores[envios_necesarios];
 
   printf("%d \n", tiempo_de_creacion);
   printf("%d \n", envios_necesarios);
@@ -122,7 +122,7 @@ int main(int argc, char const *argv[])
   
     else {
       /* parent  process FABRICA */
-      array_repartidores[i] = pid;
+      //array_repartidores[i] = pid;
       wait(NULL);
     }
     }
