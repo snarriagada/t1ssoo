@@ -66,7 +66,7 @@ int main(int argc, char const *argv[])
     //cantidad_cambios++;
     //printf("cantidad  de cambios = %i\n", cantidad_cambios);
 
-    if(dist_repartidor == (tiempo_semaforo1 - 1)){
+    if(dist_repartidor == (dist_semaforo1 - 1)){
       printf("if1\n");
       // consultar estado semaforo -> avanzo/no avanzo
       if(estado_semaforo1 == 0){
@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
         dist_repartidor++;
         printf("%i paso el primer semaforo \n", getpid());
       }
-    }else if(dist_repartidor == (tiempo_semaforo2 - 1)){
+    }else if(dist_repartidor == (dist_semaforo2 - 1)){
       printf("if2\n");
       // consultar estado semaforo -> avanzo/no avanzo
       if(estado_semaforo2 == 0){
@@ -84,7 +84,7 @@ int main(int argc, char const *argv[])
         dist_repartidor++;
         printf("%i paso el segundo semaforo \n", getpid());
       }
-    }else if(dist_repartidor == (tiempo_semaforo3 - 1)){
+    }else if(dist_repartidor == (dist_semaforo3 - 1)){
       printf("if3\n");
       // consultar estado semaforo -> avanzo/no avanzo
       if(estado_semaforo3 == 0){
@@ -98,7 +98,7 @@ int main(int argc, char const *argv[])
       // si llega aqui puede avanzar
       dist_repartidor++; 
     }
-    if(dist_repartidor == tiempo_bodega){
+    if(dist_repartidor == dist_bodega){
       tiempo_bodega = turnos;
       printf("%i llego a bodega \n", getpid());
       // terminar ejecucion aqui !! y generar output
