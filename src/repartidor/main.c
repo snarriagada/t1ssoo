@@ -109,7 +109,7 @@ int main(int argc, char const *argv[])
     printf("generando output: %i\n", indice);
     f = fopen(nombre_output, "w");
     //FILE *output = fopen(nombre_output, "w");
-    fprintf(f, "soy el output");
+    fprintf(f, "%i,%i,%i,%i", tiempo_semaforo1, tiempo_semaforo2, tiempo_semaforo3, tiempo_bodega);
     fclose(f);
 
     exit(0);
