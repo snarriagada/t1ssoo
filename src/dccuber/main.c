@@ -94,7 +94,9 @@ int main(int argc, char const *argv[])
   repartidores_finalizados++;
   if(repartidores_finalizados==envios_necesarios){
     //enviar señal main para terminar todo
-    printf("******TERMINO TODO, MATARE A: %i ****\n", getppid());
+    printf("******TERMINO TODO, MATARE A GETPPID: %i ****\n", getppid());
+    printf("******TERMINO TODO, MATARE A GETPID: %i ****\n", getpid());
+
     //kill(getppid(), SIGINT);
   }
   /*
