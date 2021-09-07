@@ -131,8 +131,10 @@ int main(int argc, char const *argv[])
       sprintf(char_distancia3, "%d", distancia3);
       char char_distancia_bodega[20];
       sprintf(char_distancia_bodega, "%d", distancia_bodega);
+      char char_indice[20];
+      sprintf(char_indice, "%d", i);
 
-      char *args[] = {char_distancia1, char_distancia2, char_distancia3, char_distancia_bodega, NULL};
+      char *args[] = {char_distancia1, char_distancia2, char_distancia3, char_distancia_bodega, char_indice, NULL};
       execv("./repartidor", args);
       printf("Child Complete\n");
     }

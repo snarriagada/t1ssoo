@@ -78,6 +78,7 @@ int main(int argc, char const *argv[])
   int dist_semaforo2 = atoi(argv[1]);  
   int dist_semaforo3 = atoi(argv[2]);
   int dist_bodega = atoi(argv[3]);
+  int indice = atoi(argv[4]);
 
   int tiempo_semaforo1 = 0;
   int tiempo_semaforo2 = 0;  
@@ -91,6 +92,36 @@ int main(int argc, char const *argv[])
   //int estado_semaforo1 = 0; // 0 es verde; 1 es rojo
   //int estado_semaforo2 = 0;
   //int estado_semaforo3 = 0;
+
+  void handle_sigabrt(int sig)
+  {
+    printf("Gracefully finishing\n");
+
+    /*
+    // Abrimos un archivo en modo de lectura
+    FILE *output = fopen("output_repartidor.txt", "w");
+    fprintf(output, "soy el output");
+    // Se cierra el archivo (si no hay leak)
+    fclose(output);
+
+    // Terminamos el programa con exit code 0
+    exit(0);
+    */
+
+    char* fileName = "repartidor_";
+    char* fileType = ".txt";
+    //int count = 5;
+    char nombre_output[512];
+    FILE* f = NULL; 
+
+    sprintf (nombre_output, "%s%i%s", fileName, indice, fileType);
+    f = fopen(nombre_output, "w");
+    //FILE *output = fopen(nombre_output, "w");
+    fprintf(nombre_output, "soy el output");
+    fclose(nombre_output);
+
+    exit(0);
+  }
 
   while (1)
   {
