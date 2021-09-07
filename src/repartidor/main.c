@@ -55,8 +55,8 @@ void handle_sigabrt(int sig)
   for (int i=0; i<count; i++)
   {
     sprintf (nombre_output, "%s%i%s", fileName, i, fileType);
-    //f = fopen(nombre_output, "w");
-    FILE *output = fopen(nombre_output, "w");
+    f = fopen(nombre_output, "w");
+    //FILE *output = fopen(nombre_output, "w");
     fprintf(output, "soy el output");
     fclose(output);
 
