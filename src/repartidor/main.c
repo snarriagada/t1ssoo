@@ -33,11 +33,12 @@ void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr)
   }
 }
 
+/*
 void handle_sigabrt(int sig)
 {
   printf("Gracefully finishing\n");
 
-  /*
+  
   // Abrimos un archivo en modo de lectura
   FILE *output = fopen("output_repartidor.txt", "w");
   fprintf(output, "soy el output");
@@ -46,7 +47,7 @@ void handle_sigabrt(int sig)
 
   // Terminamos el programa con exit code 0
   exit(0);
-  */
+  
 
   char* fileName = "repartidor_";
   char* fileType = ".txt";
@@ -65,6 +66,7 @@ void handle_sigabrt(int sig)
     exit(0);
   }
 }
+*/
 
 int main(int argc, char const *argv[])
 {
@@ -97,19 +99,9 @@ int main(int argc, char const *argv[])
   {
     printf("Gracefully finishing\n");
 
-    /*
-    // Abrimos un archivo en modo de lectura
-    FILE *output = fopen("output_repartidor.txt", "w");
-    fprintf(output, "soy el output");
-    // Se cierra el archivo (si no hay leak)
-    fclose(output);
-
-    // Terminamos el programa con exit code 0
-    exit(0);
-    */
     printf("EL INDICE DEL REPARTIDOR ES: %d\n", indice);
-    char fileName = "repartidor_";
-    char fileType = ".txt";
+    char* fileName = "repartidor_";
+    char* fileType = ".txt";
     //int count = 5;
     char nombre_output[20];
     FILE* f = NULL; 
