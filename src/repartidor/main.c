@@ -71,7 +71,6 @@ void handle_sigabrt(int sig)
 int main(int argc, char const *argv[])
 {
   connect_sigaction(SIGUSR1, handle_sigusr1);
-  signal(SIGABRT, handle_sigabrt);
 
   //printf("dist1: %s dist2: %s dist3: %s distBodega:%s\n", argv[0], argv[1], argv[2], argv[3]);
   //printf("I'm the REPARTIDOR process and my PID is: %i\n", getpid());
@@ -115,6 +114,8 @@ int main(int argc, char const *argv[])
 
     exit(0);
   }
+  signal(SIGABRT, handle_sigabrt);
+
 
   while (1)
   {
