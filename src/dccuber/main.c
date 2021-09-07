@@ -8,7 +8,9 @@
 int main(int argc, char const *argv[])
 {
   //int envios_necesarios;
-
+  int pid_semaforo1;
+  int pid_semaforo2;
+  int pid_semaforo3;
 
   printf("I'm the DCCUBER process and my PID is: %i\n", getpid());
 
@@ -51,6 +53,8 @@ int main(int argc, char const *argv[])
   int tiempo2 = atoi(data_in->lines[1][3]);
   int tiempo3 = atoi(data_in->lines[1][4]);
 
+  int repartidores_finalizados = 0;
+
   int array_repartidores[envios_necesarios];
   for (int i = 0; i < envios_necesarios; i++)
     {
@@ -87,6 +91,11 @@ int main(int argc, char const *argv[])
   printf ("Signal RECIBIDA EN FABRICA desde REPARTIDOR: %d\n", sig);
   int number_received = siginf->si_value.sival_int;
   printf ("info RECIBIDA EN FABRICA pid %d: repartidor_id %d\n",getpid(), number_received);
+  repartidores_finalizados++;
+  if(repartidores_finalizados==envios_necesarios){
+    //enviar señal main para terminar todo
+    kill(getppid(), SIGINT);
+  }
   /*
   for (int i = 0; i < envios_necesarios; i++)
     {
@@ -99,10 +108,19 @@ int main(int argc, char const *argv[])
   */
   }
 
+void handle_sigint(int sig)
+{
+  printf("Gracefully finishing\n");
+  kill(pid_semaforo1, SIGABRT);
+  kill(pid_semaforo2, SIGABRT);
+  kill(pid_semaforo3, SIGABRT);
+
+}
+
   //connect_sigaction(SIGUSR1, handle_sigusr1);
 
   // ----- FORK
-
+  signal(SIGINT, handle_sigint);
   int id_parent = getpid();
   printf("id parent PRINCIPAL: %d \n", id_parent);
   pid_t pid_fabrica;
@@ -192,6 +210,13 @@ int main(int argc, char const *argv[])
 
       else if (pid == 0) { 
         /* child process SEMAFORO */
+        if(i==0){
+          pid_semaforo1 = pid;
+        }else if(==1){
+          pid_semaforo2 = pid;
+        }else if(i==2){
+          pid_semaforo3 = pid;
+        }
         /* 
         Semaforo recibe: 
         (1) id de libre eleccion
