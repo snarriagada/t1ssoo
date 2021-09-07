@@ -245,12 +245,15 @@ void handle_sigint(int sig)
       else {
         /* parent  process PRINCIPAL */
         if(i==0){
+          printf("!! CICLO1 IF en pid: %d\n", getpid());
           pid_semaforo1 = pid;
         }
         if(i==1){
+          printf("!! CICLO2 IF en pid: %d\n", getpid());
           pid_semaforo2 = pid;
         }
         if(i==2){
+          printf("!! CICLO3 IF en pid: %d\n", getpid());
           pid_semaforo3 = pid;
         }
         wait(NULL);
