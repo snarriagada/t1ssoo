@@ -79,7 +79,6 @@ int main(int argc, char const *argv[])
   int dist_semaforo3 = atoi(argv[2]);
   int dist_bodega = atoi(argv[3]);
   int indice = atoi(argv[4]);
-  printf("EL INDICE DEL REPARTIDOR ES: %d\n", indice);
 
   int tiempo_semaforo1 = 0;
   int tiempo_semaforo2 = 0;  
@@ -108,11 +107,11 @@ int main(int argc, char const *argv[])
     // Terminamos el programa con exit code 0
     exit(0);
     */
-
+    printf("EL INDICE DEL REPARTIDOR ES: %d\n", indice);
     char fileName = "repartidor_";
     char fileType = ".txt";
     //int count = 5;
-    char nombre_output[512];
+    char nombre_output[20];
     FILE* f = NULL; 
 
     sprintf(nombre_output, "%s%i%s", fileName, indice, fileType);
