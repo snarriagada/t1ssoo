@@ -52,6 +52,11 @@ int main(int argc, char const *argv[])
   int tiempo3 = atoi(data_in->lines[1][4]);
 
   int array_repartidores[envios_necesarios];
+  for (int i = 0; i < envios_necesarios; i++)
+    {
+    array_repartidores[i] = 0;
+    }  
+  }
 
   printf("%d \n", tiempo_de_creacion);
   printf("%d \n", envios_necesarios);
@@ -69,8 +74,11 @@ int main(int argc, char const *argv[])
 
   for (int i = 0; i < envios_necesarios; i++)
     {
-    send_signal_with_int(array_repartidores[i], number_received);
-    printf("**** Enviando señal a %d \n", array_repartidores[i]);
+      if(array_repartidores[i] == 0){
+        break;
+      }
+      send_signal_with_int(array_repartidores[i], number_received);
+      printf("**** Enviando señal a %d \n", array_repartidores[i]);
     }  
   }
 
