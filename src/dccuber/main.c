@@ -7,20 +7,8 @@
 
 int main(int argc, char const *argv[])
 {
-  int envios_necesarios;
+  //int envios_necesarios;
 
-  void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr) 
-  {
-  printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
-  int number_received = siginf->si_value.sival_int;
-  printf ("info RECIBIDA EN FABRICA pid %d: semaforo_id %d\n",getpid(), number_received);
-
-  for (int i = 0; i < envios_necesarios; i++)
-    {
-    send_signal_with_int(array_repartidores[i], number_received);
-    printf("**** Enviando señal a %d \n", array_repartidores[i]);
-    }  
-  }
 
   printf("I'm the DCCUBER process and my PID is: %i\n", getpid());
 
@@ -73,6 +61,18 @@ int main(int argc, char const *argv[])
 
   input_file_destroy(data_in);
 
+  void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr) 
+  {
+  printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
+  int number_received = siginf->si_value.sival_int;
+  printf ("info RECIBIDA EN FABRICA pid %d: semaforo_id %d\n",getpid(), number_received);
+
+  for (int i = 0; i < envios_necesarios; i++)
+    {
+    send_signal_with_int(array_repartidores[i], number_received);
+    printf("**** Enviando señal a %d \n", array_repartidores[i]);
+    }  
+  }
 
   //connect_sigaction(SIGUSR1, handle_sigusr1);
 
