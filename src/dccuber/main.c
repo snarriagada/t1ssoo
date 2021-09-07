@@ -246,9 +246,11 @@ void handle_sigint(int sig)
         /* parent  process PRINCIPAL */
         if(i==0){
           pid_semaforo1 = pid;
-        }else if(i==1){
+        }
+        if(i==1){
           pid_semaforo2 = pid;
-        }else if(i==2){
+        }
+        if(i==2){
           pid_semaforo3 = pid;
         }
         wait(NULL);
