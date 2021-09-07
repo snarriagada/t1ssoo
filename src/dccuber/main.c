@@ -141,7 +141,6 @@ int main(int argc, char const *argv[])
       /* parent  process FABRICA */
       array_repartidores[i] = pid;
       wait(NULL);
-      printf("AQUI TERMINARON TODOS LOS REPARTIDORES\n");
     }
     }
     // fin for repartidores
