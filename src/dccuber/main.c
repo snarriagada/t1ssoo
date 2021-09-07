@@ -8,8 +8,7 @@ void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr)
   printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
   int number_received = siginf->si_value.sival_int;
   printf ("info RECIBIDA EN FABRICA pid %d: semaforo_id %d\n",getpid(), number_received);
-
-
+  printf("**!!!**** %i ****+++***\n", distancia1);
 }
 
 int main(int argc, char const *argv[])
@@ -55,7 +54,7 @@ int main(int argc, char const *argv[])
   int tiempo2 = atoi(data_in->lines[1][3]);
   int tiempo3 = atoi(data_in->lines[1][4]);
 
-
+  int array_repartidores[envios_necesarios;]
 
   printf("%d \n", tiempo_de_creacion);
   printf("%d \n", envios_necesarios);
@@ -97,6 +96,7 @@ int main(int argc, char const *argv[])
     //sleep(tiempo_de_creacion);
     int pid;
     pid = fork();
+    // array_repartidores[i] = pid;
     if (pid < 0) {
     /* error occurred */
     fprintf(stderr, "Fork Failed"); 
@@ -122,6 +122,7 @@ int main(int argc, char const *argv[])
   
     else {
       /* parent  process FABRICA */
+      array_repartidores[i] = pid;
       wait(NULL);
     }
     }
