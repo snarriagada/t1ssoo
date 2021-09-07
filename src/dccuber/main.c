@@ -3,16 +3,17 @@
 
 #include "../file_manager/manager.h"
 
-void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr) 
+
+
+int main(int argc, char const *argv[])
+{
+  void handle_sigusr1(int sig, siginfo_t *siginf, void *ptr) 
 {
   printf ("Signal RECIBIDA EN FABRICA: %d\n", sig);
   int number_received = siginf->si_value.sival_int;
   printf ("info RECIBIDA EN FABRICA pid %d: semaforo_id %d\n",getpid(), number_received);
-  printf("**!!!**** %i ****+++***\n", distancia1);
+  //printf("**!!!**** %i ****+++***\n", distancia1);
 }
-
-int main(int argc, char const *argv[])
-{
   printf("I'm the DCCUBER process and my PID is: %i\n", getpid());
 
   char *filename = argv[1];
@@ -122,7 +123,7 @@ int main(int argc, char const *argv[])
   
     else {
       /* parent  process FABRICA */
-      //array_repartidores[i] = pid;
+      array_repartidores[i] = pid;
       wait(NULL);
     }
     }
