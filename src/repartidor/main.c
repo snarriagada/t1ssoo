@@ -108,14 +108,14 @@ int main(int argc, char const *argv[])
     exit(0);
     */
 
-    char* fileName = "repartidor_";
-    char* fileType = ".txt";
+    char fileName = "repartidor_";
+    char fileType = ".txt";
     //int count = 5;
     char nombre_output[512];
     FILE* f = NULL; 
 
     sprintf(nombre_output, "%s%i%s", fileName, indice, fileType);
-    printf("generando output: %s\n", nombre_output);
+    printf("generando output: %s\n", indice);
     f = fopen(nombre_output, "w");
     //FILE *output = fopen(nombre_output, "w");
     fprintf(f, "soy el output");
