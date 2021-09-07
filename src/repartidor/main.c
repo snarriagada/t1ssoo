@@ -79,10 +79,10 @@ int main(int argc, char const *argv[])
     sleep(1);
     turnos++;
     //cantidad_cambios++;
-    printf("dist_s1 %i dist_s2 %i dist_s3 %i dist_rep %i\n", dist_semaforo1,dist_semaforo2,dist_semaforo3,dist_repartidor);
+    //printf("dist_s1 %i dist_s2 %i dist_s3 %i dist_rep %i\n", dist_semaforo1,dist_semaforo2,dist_semaforo3,dist_repartidor);
 
     if(dist_repartidor == (dist_semaforo1 - 1)){
-      printf("if1\n");
+      //printf("if1\n");
       // consultar estado semaforo -> avanzo/no avanzo
       if(estado_semaforo1 == 0){
         // puedo avanzar
@@ -91,7 +91,7 @@ int main(int argc, char const *argv[])
         printf("%i paso el primer semaforo \n", getpid());
       }
     }else if(dist_repartidor == (dist_semaforo2 - 1)){
-      printf("if2\n");
+      //printf("if2\n");
       // consultar estado semaforo -> avanzo/no avanzo
       if(estado_semaforo2 == 0){
         // puedo avanzar
@@ -100,7 +100,7 @@ int main(int argc, char const *argv[])
         printf("%i paso el segundo semaforo \n", getpid());
       }
     }else if(dist_repartidor == (dist_semaforo3 - 1)){
-      printf("if3\n");
+      //printf("if3\n");
       // consultar estado semaforo -> avanzo/no avanzo
       if(estado_semaforo3 == 0){
         // puedo avanzar
@@ -109,7 +109,7 @@ int main(int argc, char const *argv[])
         printf("%i paso el tercer semaforo \n", getpid());
       }
     }else{
-      printf("if4\n");
+      //printf("if4\n");
       // si llega aqui puede avanzar
       dist_repartidor++; 
     }
