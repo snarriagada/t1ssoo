@@ -114,9 +114,14 @@ int main(int argc, char const *argv[])
 void handle_sigint(int sig)
 {
   printf("Gracefully finishing\n");
+  printf("pid_s1 %d pid_s2 %d pid_s3 %d\n",pid_semaforo1,pid_semaforo2,pid_semaforo3);
+
   kill(pid_semaforo1, SIGABRT);
+  printf("pase1");
   kill(pid_semaforo2, SIGABRT);
+  printf("pase2");
   kill(pid_semaforo3, SIGABRT);
+  printf("pase3");
 }
 
   //connect_sigaction(SIGUSR1, handle_sigusr1);
