@@ -105,7 +105,17 @@ int main(int argc, char const *argv[])
 
     else if (pid == 0) { 
       /* child process Repartidor */
-      char *args[] = {"Iniciando", "repartidor", "i", NULL};
+
+      char char_distancia1[20];
+      sprintf(char_distancia1, "%d", distancia1);
+      char char_distancia2[20];
+      sprintf(char_distancia2, "%d", distancia2);
+      char char_distancia3[20];
+      sprintf(char_distancia3, "%d", distancia3);
+      char char_distancia_bodega[20];
+      sprintf(char_distancia_bodega, "%d", distancia_bodega);
+
+      char *args[] = {char_distancia1, char_distancia2, char_distancia3, char_distancia_bodega, NULL};
       execv("./repartidor", args);
       printf("Child Complete\n");
     }
