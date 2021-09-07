@@ -212,7 +212,7 @@ void handle_sigint(int sig)
         /* child process SEMAFORO */
         if(i==0){
           pid_semaforo1 = pid;
-        }else if(==1){
+        }else if(i==1){
           pid_semaforo2 = pid;
         }else if(i==2){
           pid_semaforo3 = pid;
