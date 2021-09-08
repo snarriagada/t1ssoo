@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
   int pid_semaforo1 = 0;
   int pid_semaforo2 = 0;
   int pid_semaforo3 = 0;
+  pid_t pid_fabrica; //instanciamos el pidfab aqui para que handler los lea
 
   printf("I'm the DCCUBER process and my PID is: %i\n", getpid());
 
@@ -99,6 +100,12 @@ int main(int argc, char const *argv[])
 
     kill(getppid(), SIGINT);
   }
+
+  void handle_sigabrt(int sig)
+  {
+    printf("Gracefully finishing fabrica\n");
+    exit(0);
+  }
   /*
   for (int i = 0; i < envios_necesarios; i++)
     {
@@ -122,6 +129,9 @@ void handle_sigint(int sig)
   printf("pase2");
   kill(pid_semaforo3, SIGABRT);
   printf("pase3");
+  kill(pid_fabrica, SIGABRT);
+  printf("pase4");
+  exit(0);
 }
 
   //connect_sigaction(SIGUSR1, handle_sigusr1);
@@ -130,7 +140,6 @@ void handle_sigint(int sig)
   signal(SIGINT, handle_sigint);
   int id_parent = getpid();
   printf("id parent PRINCIPAL: %d \n", id_parent);
-  pid_t pid_fabrica;
 
   /* fork a child process */
   pid_fabrica = fork();
@@ -145,6 +154,7 @@ void handle_sigint(int sig)
     
     connect_sigaction(SIGUSR1, handle_sigusr1);
     connect_sigaction(SIGUSR2, handle_sigusr2);
+    signal(SIGABRT, handle_sigabrt);
 
     int pid_fabrica = getpid();
     //pid_fabrica = getpid();
@@ -259,7 +269,7 @@ void handle_sigint(int sig)
         }
         //wait(NULL);
         //pause();
-        printf("principal no espera a semaforo");
+        //printf("principal no espera a semaforo");
       }
     }
     wait(NULL);
