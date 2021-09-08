@@ -91,7 +91,7 @@ int main(int argc, char const *argv[])
   {
   printf ("Signal RECIBIDA EN FABRICA desde REPARTIDOR: %d\n", sig);
   int number_received = siginf->si_value.sival_int;
-  printf ("info RECIBIDA EN FABRICA pid %d: repartidor_id %d\n",getpid(), number_received);
+  //printf ("info RECIBIDA EN FABRICA pid %d: repartidor_id %d\n",getpid(), number_received);
   repartidores_finalizados++;
   if(repartidores_finalizados==envios_necesarios){
     //enviar señal main para terminar todo
@@ -121,17 +121,18 @@ int main(int argc, char const *argv[])
 
 void handle_sigint(int sig)
 {
-  printf("Gracefully finishing\n");
-  printf("pid_s1 %d pid_s2 %d pid_s3 %d\n",pid_semaforo1,pid_semaforo2,pid_semaforo3);
+  printf("Gracefully finishing main\n");
+  //printf("pid_s1 %d pid_s2 %d pid_s3 %d\n",pid_semaforo1,pid_semaforo2,pid_semaforo3);
 
   kill(pid_semaforo1, SIGABRT);
-  printf("pase1");
+  //printf("pase1");
   kill(pid_semaforo2, SIGABRT);
-  printf("pase2");
+  //printf("pase2");
   kill(pid_semaforo3, SIGABRT);
-  printf("pase3");
+  //printf("pase3");
   kill(pid_fabrica, SIGABRT);
-  printf("pase4");
+  //printf("pase4");
+  printf("*** AHORA ME CIERRO YO (MAIN) ***")
   exit(0);
 }
 
