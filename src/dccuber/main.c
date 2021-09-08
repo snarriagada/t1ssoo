@@ -117,7 +117,7 @@ int main(int argc, char const *argv[])
       printf("**** Enviando señal a %d \n", array_repartidores[i]);
     }  
   */
-  }
+  
 
 void handle_sigint(int sig)
 {
