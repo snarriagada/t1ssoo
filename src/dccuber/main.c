@@ -100,6 +100,7 @@ int main(int argc, char const *argv[])
 
     kill(getppid(), SIGINT);
   }
+  }
 
   void handle_sigabrt(int sig)
   {
