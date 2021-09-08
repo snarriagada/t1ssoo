@@ -132,6 +132,7 @@ void handle_sigint(int sig)
   //printf("pase3");
   kill(pid_fabrica, SIGABRT);
   //printf("pase4");
+  sleep(2);
   printf("*** AHORA ME CIERRO YO (MAIN) ***");
   exit(0);
 }
