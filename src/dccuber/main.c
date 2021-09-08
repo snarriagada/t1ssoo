@@ -224,6 +224,7 @@ void handle_sigint(int sig)
         (3) parent = PID fabrica
         */
         //printf("***EN ITERACION %d DEL FORK SEMAFOROS****\n", i);
+        
         char id[20];
         sprintf(id, "%d", i); 
 
@@ -257,10 +258,11 @@ void handle_sigint(int sig)
           pid_semaforo3 = pid;
         }
         //wait(NULL);
-        pause();
+        //pause();
         printf("principal no espera a semaforo");
       }
     }
+    wait(NULL);
   }
 }
 
