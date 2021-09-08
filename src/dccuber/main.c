@@ -264,5 +264,6 @@ void handle_sigint(int sig)
     }
     wait(NULL);
   }
+  wait(NULL);
 }
 
